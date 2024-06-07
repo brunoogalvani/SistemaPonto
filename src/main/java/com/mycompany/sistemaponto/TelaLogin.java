@@ -4,6 +4,7 @@
  */
 package com.mycompany.sistemaponto;
 
+import java.awt.event.KeyEvent;
 import java.sql.*;
 import javax.swing.JOptionPane;
 
@@ -23,19 +24,25 @@ public class TelaLogin extends javax.swing.JFrame {
             String senha = senhaPasswordField.getText();
 
             Usuario user = new Usuario(usuario, senha);
-
-            UsuarioDAO usuariodao = new UsuarioDAO();
-            ResultSet rsdao = usuariodao.autenticarUsuario(user);
+            
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            ResultSet rsDAO = usuarioDAO.entrar(user);
 
             if(usuario.equals("")&&senha.equals("")){
                 JOptionPane.showMessageDialog(null, "Existem campos vazios");
             } else if (usuario.equals("")||senha.equals("")){
                 JOptionPane.showMessageDialog(null, "Existe um campo vazio");
             } else{
-                if(rsdao.next()) {
-                    TelaPonto telaponto = new TelaPonto();
-                    telaponto.setVisible(true);
-                    this.dispose();
+                if(rsDAO.next()) {
+                    if(rsDAO.getString("tipo").equals("Admin")){
+                        TelaAdmin admin = new TelaAdmin();
+                        admin.setVisible(true);
+                        this.dispose();
+                    } else {
+                        TelaPonto ponto = new TelaPonto(rsDAO.getString("nome"));
+                        ponto.setVisible(true);
+                        this.dispose();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Usuário e/ou Senha Inválido(s)", "Error", 1);
                 }
@@ -95,6 +102,7 @@ public class TelaLogin extends javax.swing.JFrame {
         senhaPasswordField.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         senhaPasswordField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        loginButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         loginButton.setText("Entrar");
         loginButton.setBorderPainted(false);
         loginButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -103,7 +111,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 loginButtonActionPerformed(evt);
             }
         });
+        loginButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                loginButtonKeyPressed(evt);
+            }
+        });
 
+        sairButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         sairButton.setText("Sair");
         sairButton.setBorderPainted(false);
         sairButton.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -118,21 +132,21 @@ public class TelaLogin extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(224, 224, 224)
+                .addGap(172, 172, 172)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(senhaPasswordField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(senhaLabel)
                     .addComponent(usuarioTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(usuarioLabel)
-                    .addComponent(jLabel1)
-                    .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(226, Short.MAX_VALUE))
+                    .addComponent(jLabel1))
+                .addContainerGap(178, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(101, 101, 101)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
                 .addGap(45, 45, 45)
                 .addComponent(usuarioLabel)
@@ -146,7 +160,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addComponent(loginButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
                 .addComponent(sairButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(109, Short.MAX_VALUE))
+                .addContainerGap(63, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,6 +188,12 @@ public class TelaLogin extends javax.swing.JFrame {
     private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
         logar();
     }//GEN-LAST:event_loginButtonActionPerformed
+
+    private void loginButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_loginButtonKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER){
+            loginButton.doClick();
+        }
+    }//GEN-LAST:event_loginButtonKeyPressed
 
     /**
      * @param args the command line arguments

@@ -16,8 +16,8 @@ public class UsuarioDAO {
     PreparedStatement pst = null;
     ResultSet rs = null;
     
-    public ResultSet autenticarUsuario(Usuario user) {  
-        String sql = "SELECT * FROM usuario WHERE usuario=? and senha=?;";   
+    public ResultSet entrar(Usuario user) {
+        String sql = "SELECT * FROM usuario WHERE usuario=? and senha=?;";
         
         try {
             ConnectionFactory cf = new ConnectionFactory();
@@ -29,10 +29,26 @@ public class UsuarioDAO {
 
             rs = pst.executeQuery();
             return rs;
-
+            
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e);
                 return null;
             }
+    }
+    
+    public boolean existe(Usuario user) throws Exception{
+        String sql = "SELECT * FROM usuario WHERE usuario=? and senha=?;";
+        
+        ConnectionFactory cf = new ConnectionFactory();
+        
+        try (Connection conn = cf.obtemConexao()){
+            pst = conn.prepareStatement(sql);
+            pst.setString(1, user.getUsuario());
+            pst.setString(2, user.getSenha());
+            
+            try (ResultSet rs = pst.executeQuery()){
+                return rs.next();
+            }
+        }
     }
 }
