@@ -4,6 +4,10 @@
  */
 package com.mycompany.sistemaponto;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+
 /**
  *
  * @author bthez
@@ -22,6 +26,10 @@ public class TelaPonto extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         nomeLabel.setText(nome);
+        DateTimeFormatter dateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDateTime dataAtual = LocalDateTime.now();
+        var dataFormatada = dateFormat.format(dataAtual);
+        dataLabel.setText(dataFormatada);
     }
 
     /**
@@ -36,18 +44,19 @@ public class TelaPonto extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        entradaManhaButton = new javax.swing.JButton();
+        saidaManhaButton = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        entradaTardeButton = new javax.swing.JButton();
+        saidaTardeButton = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        entradaNoiteButton = new javax.swing.JButton();
+        saidaNoiteButton = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         nomeLabel = new javax.swing.JLabel();
+        dataLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -58,13 +67,23 @@ public class TelaPonto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel1.setText("Manhã");
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton1.setText("Entrada");
-        jButton1.setBorderPainted(false);
+        entradaManhaButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        entradaManhaButton.setText("Entrada");
+        entradaManhaButton.setBorderPainted(false);
+        entradaManhaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaManhaButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton2.setText("Saída");
-        jButton2.setBorderPainted(false);
+        saidaManhaButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        saidaManhaButton.setText("Saída");
+        saidaManhaButton.setBorderPainted(false);
+        saidaManhaButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saidaManhaButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -74,9 +93,9 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaManhaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(saidaManhaButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel1))
                 .addContainerGap())
         );
@@ -87,21 +106,31 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                    .addComponent(saidaManhaButton)
+                    .addComponent(entradaManhaButton))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setText("Tarde");
 
-        jButton5.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton5.setText("Entrada");
-        jButton5.setBorderPainted(false);
+        entradaTardeButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        entradaTardeButton.setText("Entrada");
+        entradaTardeButton.setBorderPainted(false);
+        entradaTardeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaTardeButtonActionPerformed(evt);
+            }
+        });
 
-        jButton6.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton6.setText("Saída");
-        jButton6.setBorderPainted(false);
+        saidaTardeButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        saidaTardeButton.setText("Saída");
+        saidaTardeButton.setBorderPainted(false);
+        saidaTardeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saidaTardeButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -111,9 +140,9 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaTardeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(saidaTardeButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel5))
                 .addContainerGap())
         );
@@ -124,8 +153,8 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addComponent(jLabel5)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5))
+                    .addComponent(saidaTardeButton)
+                    .addComponent(entradaTardeButton))
                 .addGap(0, 26, Short.MAX_VALUE))
         );
 
@@ -134,13 +163,23 @@ public class TelaPonto extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel6.setText("Noite");
 
-        jButton7.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton7.setText("Entrada");
-        jButton7.setBorderPainted(false);
+        entradaNoiteButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        entradaNoiteButton.setText("Entrada");
+        entradaNoiteButton.setBorderPainted(false);
+        entradaNoiteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                entradaNoiteButtonActionPerformed(evt);
+            }
+        });
 
-        jButton8.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
-        jButton8.setText("Saída");
-        jButton8.setBorderPainted(false);
+        saidaNoiteButton.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        saidaNoiteButton.setText("Saída");
+        saidaNoiteButton.setBorderPainted(false);
+        saidaNoiteButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saidaNoiteButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -150,9 +189,9 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(entradaNoiteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(saidaNoiteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel6))
                 .addContainerGap())
         );
@@ -163,8 +202,8 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton8)
-                    .addComponent(jButton7))
+                    .addComponent(saidaNoiteButton)
+                    .addComponent(entradaNoiteButton))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -173,6 +212,9 @@ public class TelaPonto extends javax.swing.JFrame {
 
         nomeLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         nomeLabel.setText("usuario");
+
+        dataLabel.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        dataLabel.setText("data");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -188,7 +230,8 @@ public class TelaPonto extends javax.swing.JFrame {
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(nomeLabel))
+                    .addComponent(nomeLabel)
+                    .addComponent(dataLabel))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -198,12 +241,14 @@ public class TelaPonto extends javax.swing.JFrame {
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(nomeLabel)
-                .addGap(83, 83, 83)
+                .addGap(55, 55, 55)
+                .addComponent(dataLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(75, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -219,6 +264,67 @@ public class TelaPonto extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void entradaManhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaManhaButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de entrada(Manha)" + horaFormatada);
+        
+        entradaManhaButton.setEnabled(false);
+        
+    }//GEN-LAST:event_entradaManhaButtonActionPerformed
+
+    private void saidaManhaButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saidaManhaButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de saida(Manha)" + horaFormatada);
+        
+        saidaManhaButton.setEnabled(false);
+    }//GEN-LAST:event_saidaManhaButtonActionPerformed
+
+    private void entradaTardeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaTardeButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de entrada(Tarde)" + horaFormatada);
+        
+        entradaTardeButton.setEnabled(false);
+    }//GEN-LAST:event_entradaTardeButtonActionPerformed
+
+    private void saidaTardeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saidaTardeButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de saida(Tarde)" + horaFormatada);
+        
+        saidaTardeButton.setEnabled(false);
+    }//GEN-LAST:event_saidaTardeButtonActionPerformed
+
+    private void entradaNoiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entradaNoiteButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de entrada(Noite)" + horaFormatada);
+        
+        entradaNoiteButton.setEnabled(false);
+    }//GEN-LAST:event_entradaNoiteButtonActionPerformed
+
+    private void saidaNoiteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saidaNoiteButtonActionPerformed
+        DateTimeFormatter horaFormat = DateTimeFormatter.ofPattern("HH:mm");
+        LocalDateTime horaAtual = LocalDateTime.now();
+        var horaFormatada = horaFormat.format(horaAtual);
+        
+        System.out.println("Horario de saida(Noite)" + horaFormatada);
+        
+        saidaNoiteButton.setEnabled(false);
+    }//GEN-LAST:event_saidaNoiteButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -256,12 +362,10 @@ public class TelaPonto extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JLabel dataLabel;
+    private javax.swing.JButton entradaManhaButton;
+    private javax.swing.JButton entradaNoiteButton;
+    private javax.swing.JButton entradaTardeButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -271,5 +375,8 @@ public class TelaPonto extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JLabel nomeLabel;
+    private javax.swing.JButton saidaManhaButton;
+    private javax.swing.JButton saidaNoiteButton;
+    private javax.swing.JButton saidaTardeButton;
     // End of variables declaration//GEN-END:variables
 }
